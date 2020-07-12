@@ -1,7 +1,7 @@
 <?php
 	//ini_set('display_errors', 'off');
-	require_once "header.php";
-	require_once "service.php";
+	require_once "inc/header.php";
+	require_once "inc/service.php";
 ?>
 <div class="container" style="margin-top:56px;">
 <?php
@@ -23,7 +23,7 @@ use Decorator\{Calculator,SubtractDecorator};
 			</div>
 		</div>
 		<div class="col-md-9 col-lg-7 mt-3">
-			<div>
+			<div class="border border-primary rounded p-1">
 				<img src="photos/Singleton_pattern_uml.png" alt="">
 			</div>
 			<div class="font-weight-bold">
@@ -52,7 +52,7 @@ use Decorator\{Calculator,SubtractDecorator};
 			</div>
 		</div>
 		<div class="col-md-9 col-lg-7 mt-3">
-			<div>
+			<div class="border border-primary rounded p-1">
 				<div>
 					La class Calculator implémentant IOperator ne fait que des additions comme opération, on veut en ajouter d'autre : multiplication,soustraction etc en évitant de modifier son code. Donc on crée SubtractDecorator qui hérite d'une classe abstraite - CalculatorDecorator. CalculatorDecorator implémente IOperator et reçoit un calculator comme attribut.<br>
 					Si on souhaite ajouter une autre fonctionnalité, on fait pareil comme SubstratDecorator.
@@ -80,7 +80,7 @@ use Decorator\{Calculator,SubtractDecorator};
 		</div>
 	</div>
 
-	<div class="row justify-content-center mb-5" id="decorator">
+	<div class="row justify-content-center mb-5" id="adapter">
 		<div class="col-md-9 col-lg-7">
 			<h2 class="text-center font-weight-bold">Adaptateur</h2>
 			<div>
@@ -95,31 +95,21 @@ use Decorator\{Calculator,SubtractDecorator};
 			</div>
 		</div>
 		<div class="col-md-9 col-lg-7 mt-3">
-			<div>
-				<img src="photos/decorator.png" alt="">
+			<div class="border border-primary rounded p-1">
+				<div>
+				</div>
+				<img src="" alt="">
 			</div>
 			<div class="font-weight-bold">
-				$cal = new Calculator();<br>
-				$add = $cal->add(3,4);<br>
-				$deco1 = new SubtractDecorator($cal);<br>
-				$add = $deco1->add(3,4);<br>
-				$sub = $deco1->other(3,4);<br>
+				
 			</div>
 			<?php
-				$cal = new Calculator();
-				$add = $cal->add(3,4);
-				Service::dump($add);
-
-				$deco1 = new SubtractDecorator($cal);
-				$add = $deco1->add(3,4);
-				Service::dump($add);
-				$sub = $deco1->other(3,4);
-				Service::dump($sub);
+				
 			?>
 		</div>
 	</div>
 
 </div>
 <?php
-	require_once "footer.php";
+	require_once "inc/footer.php";
 ?>
