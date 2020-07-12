@@ -9,6 +9,7 @@ require_once "autoload.php";
 use Singleton\Connect;
 use Decorator\{Calculator,SubtractDecorator};
 use Adapter\{Book,EBook,EBookAdapter};
+use Observer\{User,EditUser};
 ?>
 
 	<div class="row justify-content-center mb-5" id="singleton">
@@ -127,6 +128,52 @@ use Adapter\{Book,EBook,EBookAdapter};
 
 				$ebookadapter = new EBookAdapter($book);
 				$ebookadapter->display();
+			?>
+		</div>
+	</div>
+
+	<div class="row justify-content-center mb-5" id="observer">
+		<div class="col-md-9 col-lg-7">
+			<h2 class="text-center font-weight-bold">Observateur</h2>
+			<div>
+				<div class="mb-2">
+					Ce patron de conception permet de limiter la dépendance entre les objets. Lorsqu'un événement précis se produit dans une application, il peut être nécessaire de lancer une ou plusieurs actions. Habituellement, toutes ces actions sont appelées à la suite dans une méthode.<br>
+					Grâce à ce patron de conception, on va pouvoir séparer les différentes actions. Pour cela, on crée un objet qui va être observé. C'est lui qui va lancer l'alerte. Ensuite, on va créer plusieurs objets qui vont observer cet objet. Dès que l'alerte est donnée par l'objet observé, les objets observateurs vont lancer leur(s) action(s).
+				</div>
+				<div>
+					观察者模式有时也被称作发布/订阅模式，该模式用于为对象实现发布/订阅功能：一旦主体对象状态发生改变，与之关联的观察者对象会收到通知，并进行相应操作。 PHP 为观察者模式定义了两个接口：SplSubject 和 SplObserver。SplSubject 可以看做主体对象的抽象，SplObserver 可以看做观察者对象的抽象，要实现观察者模式，只需让主体对象实现 SplSubject ，观察者对象实现 SplObserver，并实现相应方法即可。
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-lg-7 mt-3">
+			<div class="border border-primary rounded p-1">
+				<div>
+					La classe User étant l'objet observé implémente SplSubject,<br> 
+					la classe EditUser étant un observateur implémente SplObserver.<br>
+					Lorsqu'on modifie les infos d'un user, on veut les enregistrer directement dans la bdd, <br>
+					donc on insère l'observateur EditUser dans la liste dans User.<br>
+					Une fois qu'on modifie l'user, l'action est déclenchée par l'observateur.<br>
+					Si on a une autre action, on crée un autre observateur comme EditUser.
+				</div>
+				<img src="photos/observer.png" alt="">
+			</div>
+			<div class="font-weight-bold">
+				//créer un observateur<br>
+				$observer = new EditUser();<br>
+				//créer un user<br> 
+				$user = new User("Federer", "Roger", "aa@gmail.com"); <br>
+				//enregistrer l'observateur dans la liste dans l'user<br>
+				$user->attach($observer); <br>
+				//modifier l'user et déclencher l'action<br>
+				$user->update("aaa", "bbb", "ccc@gmail.com"); <br>
+				$user->update("xxx", "yyy", "zzz@gmail.com");
+			</div>
+			<?php
+				$observer = new EditUser();
+				$user = new User("Federer","Roger","aa@gmail.com");
+				$user->attach($observer);
+				$user->update("aaa","bbb","ccc@gmail.com");
+				$user->update("xxx","yyy","zzz@gmail.com");
 			?>
 		</div>
 	</div>
