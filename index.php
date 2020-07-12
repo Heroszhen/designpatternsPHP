@@ -10,6 +10,7 @@ use Singleton\Connect;
 use Decorator\{Calculator,SubtractDecorator};
 use Adapter\{Book,EBook,EBookAdapter};
 use Observer\{User,EditUser};
+use strategy\{QuickSort,BubbleSort,MergeSort,ArrayRand};
 ?>
 
 	<div class="row justify-content-center mb-5" id="singleton">
@@ -174,6 +175,46 @@ use Observer\{User,EditUser};
 				$user->attach($observer);
 				$user->update("aaa","bbb","ccc@gmail.com");
 				$user->update("xxx","yyy","zzz@gmail.com");
+			?>
+		</div>
+	</div>
+
+	<div class="row justify-content-center mb-5" id="strategy">
+		<div class="col-md-9 col-lg-7">
+			<h2 class="text-center font-weight-bold">Strategie</h2>
+			<div>
+				<div class="mb-2">
+					Ce patron de conception permet à un code client de sélectionner un algorithme à la volée en fonction de ses besoins. Il encapsule les algorithmes, ce qui permet de les utiliser à divers endroits de votre application, sans avoir à dupliquer le code.
+				</div>
+				<div>
+					在软件开发中也常常遇到类似的情况，实现某一个功能有多种算法或者策略，我们可以根据环境或者条件的不同选择不同的算法或者策略来完成该功能。如查找、排序等，一种常用的方法是硬编码（Hard Coding）在一个类中，如需要提供多种查找算法，可以将这些算法写到一个类中，在该类中提供多个方法，每一个方法对应一个具体的查找算法；当然也可以将这些查找算法封装在一个统一的方法中，通过if…else…或者case等条件判断语句来进行选择。这两种实现方法我们都可以称之为硬编码，如果需要增加一种新的查找算法，需要修改封装算法类的源代码；更换查找算法，也需要修改客户端调用代码。在这个算法类中封装了大量查找算法，该类代码将较复杂，维护较为困难。如果我们将这些策略包含在客户端，这种做法更不可取，将导致客户端程序庞大而且难以维护，如果存在大量可供选择的算法时问题将变得更加严重。 如何让算法和对象分开来，使得算法可以独立于使用它的客户而变化？为此我们引入策略模式。 策略模式（Strategy），又叫算法簇模式，就是定义了不同的算法族，并且之间可以互相替换，此模式让算法的变化独立于使用算法的客户。 常见的使用场景比如对象筛选，可以根据日期筛选，也可以根据 ID 筛选；又比如在单元测试中，我们可以在文件和内存存储之间进行切换。
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-lg-7 mt-3">
+			<div class="border border-primary rounded p-1">
+				<div>
+					On a plusieurs méthodes de tri, pour les utiliser sans modifier le code de la classe ArrayRand, on crée des classes de tri implémentant ISort.<br>
+					Comme cela, on peut aussi créer d'autres méthodes de tri sans toucher à la classe ArrayRand.
+				</div>
+				<img src="photos/strategy.png" alt="">
+			</div>
+			<div class="font-weight-bold">
+				//tri rapide<br>
+				$qs = new QuickSort();<br>
+				//tri à bulle<br>
+				$bs = new BubbleSort();<br>
+				//tri fusion<br>
+				$ms = new MergeSort();<br>
+				$ar = new ArrayRand($qs,10);<br>
+				$ar->display();
+			</div>
+			<?php
+				$qs = new QuickSort();
+				$bs = new BubbleSort();
+				$ms = new MergeSort();
+				$ar = new ArrayRand($ms,10);
+				$ar->display();
 			?>
 		</div>
 	</div>

@@ -37,6 +37,9 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="#observer">Observateur</a>
 	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#strategy">Strategie</a>
+	      </li>
 	    </ul>
 	  </div>
 	</nav>
