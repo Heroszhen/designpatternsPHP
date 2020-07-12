@@ -8,6 +8,7 @@
 require_once "autoload.php";
 use Singleton\Connect;
 use Decorator\{Calculator,SubtractDecorator};
+use Adapter\{Book,EBook,EBookAdapter};
 ?>
 
 	<div class="row justify-content-center mb-5" id="singleton">
@@ -104,7 +105,16 @@ use Decorator\{Calculator,SubtractDecorator};
 				
 			</div>
 			<?php
-				
+				$book = new Book();
+				$book->read();
+				$book->turn();
+				$book->read();
+
+				$ebook = new EBook();
+				$ebook->display();
+
+				$ebookadapter = new EBookAdapter($book);
+				$ebookadapter->display();
 			?>
 		</div>
 	</div>
