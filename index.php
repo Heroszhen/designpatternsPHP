@@ -98,11 +98,23 @@ use Adapter\{Book,EBook,EBookAdapter};
 		<div class="col-md-9 col-lg-7 mt-3">
 			<div class="border border-primary rounded p-1">
 				<div>
+					La class Book implémente IBook, la class EBook implémente IEBook.<br> 
+					Maintenant on ne veut plus utiliser l'interface IBook, mais on veut garder la class Book en l'utilisant avec IEBook, donc on crée un adaptateur implémentant IEBook et reçevant un book de type IBook.<br>
+					Comme cela la class Book peut fonctionner avec l'interface IEBook sans que son code soit modifié.
 				</div>
-				<img src="" alt="">
+				<img src="photos/adapter.png" alt="">
 			</div>
 			<div class="font-weight-bold">
-				
+				$book = new Book();<br>
+				$book->read();<br>
+				$book->turn();<br>
+				$book->read();<br>
+
+				$ebook = new EBook();<br>
+				$ebook->display();<br>
+
+				$ebookadapter = new EBookAdapter($book);<br>
+				$ebookadapter->display();
 			</div>
 			<?php
 				$book = new Book();
