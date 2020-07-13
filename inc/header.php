@@ -40,6 +40,9 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="#strategy">Strategie</a>
 	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#facade">Facade</a>
+	      </li>
 	    </ul>
 	  </div>
 	</nav>

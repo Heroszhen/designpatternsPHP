@@ -10,7 +10,8 @@ use Singleton\Connect;
 use Decorator\{Calculator,SubtractDecorator};
 use Adapter\{Book,EBook,EBookAdapter};
 use Observer\{User,EditUser};
-use strategy\{QuickSort,BubbleSort,MergeSort,ArrayRand};
+use Strategy\{QuickSort,BubbleSort,MergeSort,ArrayRand};
+use Facade\Facade;
 ?>
 
 	<div class="row justify-content-center mb-5" id="singleton">
@@ -215,6 +216,38 @@ use strategy\{QuickSort,BubbleSort,MergeSort,ArrayRand};
 				$ms = new MergeSort();
 				$ar = new ArrayRand($ms,10);
 				$ar->display();
+			?>
+		</div>
+	</div>
+
+	<div class="row justify-content-center mb-5" id="facade">
+		<div class="col-md-9 col-lg-7">
+			<h2 class="text-center font-weight-bold">Facade</h2>
+			<div>
+				<div class="mb-2">
+					Nous devons considérer l’utilisation du pattern Facade dans les cas où le code que nous voulons utiliser se compose de plusieurs classes et méthodes, et tout ce que nous voulons, c’est une interface simple, de préférence une méthode, qui peut faire tout le travail pour nous.
+				</div>
+				<div>
+					门面模式，也叫外观模式。不管是门面还是外观，都是我们对外的媒介，就好像我们的脸面一样。所以，这个模式最大的特点就是要表现的“好看”。怎么说呢？一堆复杂的对象调用，自己都看蒙了，特别是对老系统进行升级维护的时候。用门面来把老系统的功能调用封装起来，在外面看来就和新系统一样，这就是门面模式的用途啦！
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-lg-7 mt-3">
+			<div class="border border-primary rounded p-1">
+				<div>
+					Prenons les classes de Strategy, pour utiliser une méthode de tri, on était obligé d'instancier un ISort, un ArrayRand et d'appeler display().<br>
+					Avec le pattern Facade, on stocke toutes ces instanciations dans la classe Facade.<br>
+					Maintenant on instancie un seul objet - facade, puis appelle la méthode qu'on veut utiliser.
+				</div>
+				<img src="photos/facade.png" alt="">
+			</div>
+			<div class="font-weight-bold">
+				$facade = new Facade();<br>
+				$facade->BubbleSort(5);
+			</div>
+			<?php
+				$facade = new Facade();
+				$facade->BubbleSort(5);
 			?>
 		</div>
 	</div>
